@@ -25,6 +25,7 @@ app.get('/', function (req, res) {
 
     res.render('index', {
         greetUser: greetings.greet(),
+        counter: greetings.count()
         
     });
 
@@ -44,17 +45,20 @@ app.post('/greetings', function (req, res) {
 
 
 app.get("/counter/:username", function (req, res) {
+    const username = req.params.username;
 
     res.render("counter", {
+        counter: count()
 
-    })
+    });
 });
 
+  
 
 app.post("/greeted", function (req, res) {
-    greetings.greet(req.body.languageRadio),
-    greetings.setName(req.body.name)
+ 
     res.redirect("/")
+   
 
 })
 

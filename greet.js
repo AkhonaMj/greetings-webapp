@@ -14,6 +14,7 @@ export default function Greetings() {
   function setLanguage(language) {
     languageHolder = language;
   }
+  
   function getName() {
     return nameHolder;
   }
@@ -49,9 +50,12 @@ export default function Greetings() {
     }
   }
 
-  function counter() {
+
+
+  function count() {
     return nameList.length
   }
+
   function invalid() {
     if (!valid) {
     }
@@ -69,7 +73,7 @@ export default function Greetings() {
     greetInSepedi,
     greetInEnglish,
     greetInIsixhosa,
-    counter,
+    count,
     invalid,
     noGreetLanguage,
     greet,
