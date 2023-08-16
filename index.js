@@ -1,6 +1,8 @@
 import express from "express";
 import { engine } from "express-handlebars";
 import bodyParser from "body-parser";
+import flash from "express-flash";
+import session from "express-session";
 import Greetings from "./greet.js";
 
 
@@ -12,36 +14,44 @@ const exphbs = engine({
     layoutsDir: 'views/layouts'
 });
 
-
 app.engine('handlebars', exphbs);
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
+app.use(session({
+    secret: "<add a secret string here>",
+    resave: false,
+    saveUninitialized: true
+}));
+app.use(flash());
 
 
 app.get('/', function (req, res) {
-
     res.render('index', {
         greetUser: greetings.greet(),
-        counter: greetings.count()
-        
-    });
+        counter: greetings.count(),
 
+    });
 });
 
+app.get('/', function (req, res) {
+    req.flash('info', 'Welcome');
+    res.render('index', {
+        messages: greetings.invalid()
+    })
+});
 
-
-
+app.get('/addFlash', function (req, res) {
+    req.flash('info', 'Flash Message Added');
+    res.redirect('/');
+})
 app.post('/greetings', function (req, res) {
     greetings.setName(req.body.name);
     greetings.setLanguage(req.body.languageRadio)
-   
-
     res.redirect('/')
-
 });
+
 
 
 app.get("/counter/:username", function (req, res) {
@@ -53,12 +63,12 @@ app.get("/counter/:username", function (req, res) {
     });
 });
 
-  
+
 
 app.post("/greeted", function (req, res) {
- 
+
     res.redirect("/")
-   
+
 
 })
 
