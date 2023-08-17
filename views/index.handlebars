@@ -8,12 +8,8 @@
 
 
         </label>
-        <p>{{greetUser}}</p>
+        <p>{{greetUser}}{{messages}}</p>
       
-       
-           
-      
-
         <p>Counter:{{counter}}</p>
         <label class="">
             <input type="radio" name="languageRadio" class="languageRadio" value="english">
@@ -36,7 +32,7 @@
     </form>
 
 
-    <form action="" method="post">
+    <form action="/reset" method="POST">
         <button class="button" type="submit">Reset</button>
     </form>
 </div>

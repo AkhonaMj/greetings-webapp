@@ -31,27 +31,30 @@ app.get('/', function (req, res) {
     res.render('index', {
         greetUser: greetings.greet(),
         counter: greetings.count(),
+        messages: req.flash('error')[0]
 
     });
 });
 
-app.get('/', function (req, res) {
-    req.flash('info', 'Welcome');
-    res.render('index', {
-        messages: greetings.invalid()
-    })
-});
 
-app.get('/addFlash', function (req, res) {
-    req.flash('info', 'Flash Message Added');
-    res.redirect('/');
-})
 app.post('/greetings', function (req, res) {
     greetings.setName(req.body.name);
     greetings.setLanguage(req.body.languageRadio)
+    
+    if(!greetings.getName()){
+        req.flash('error', greetings.invalid());
+    }
+    
+     if(!greetings.getLanguage()){
+        req.flash('error', greetings.noGreetLanguage());
+    }
     res.redirect('/')
 });
 
+app.post('/reset', function (req, res) {
+   greetings.reset()
+    res.redirect('/')
+})
 
 
 app.get("/counter/:username", function (req, res) {

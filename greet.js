@@ -5,25 +5,42 @@ export default function Greetings() {
   var languageHolder = "";
 
   function setName(name) {
-    if (valid(name))
+    if (valid(name) && name !== "") {
       nameHolder = name;
-    if (!nameList.includes(name)) {
-      nameList.push(name);
+    } else {
+      nameHolder = ""
     }
+
   }
+
+
   function setLanguage(language) {
-    languageHolder = language;
+    if (language !== "") {
+      languageHolder = language;
+    } else {
+      noGreetLanguage();
+    }
+
+
   }
-  
+
   function getName() {
     return nameHolder;
   }
 
+  function getLanguage(){
+    return languageHolder;
+  }
 
 
   function valid(name) {
     const validRegex = /^[a-zA-Z]+$/
-    return validRegex.test(name);
+    if (!validRegex.test(name)) {
+      invalid();
+      return false;
+    } else {
+      return true;
+    }
   }
 
   function greetInSepedi() {
@@ -39,14 +56,21 @@ export default function Greetings() {
   }
 
   function greet() {
-    if (languageHolder == "english") {
-      return greetInEnglish()
+    if (nameHolder !== "" && languageHolder !== "") {
+      if (!nameList.includes(nameHolder)) {
+        nameList.push(nameHolder);
+      }
 
-    } else if (languageHolder == "sepedi") {
-      return greetInSepedi()
+      if (languageHolder == "english") {
+        return greetInEnglish()
 
-    } else if (languageHolder == "isixhosa") {
-      return greetInIsixhosa()
+      } else if (languageHolder == "sepedi") {
+        return greetInSepedi()
+
+      } else if (languageHolder == "isixhosa") {
+        return greetInIsixhosa()
+      }
+
     }
   }
 
@@ -56,16 +80,20 @@ export default function Greetings() {
     return nameList.length
   }
 
+  function reset() {
+    nameList = []
+    nameHolder = ""
+    languageHolder = ""
+  }
+
   function invalid() {
-    if (!valid) {
-    }
     return "Please enter a valid name"
   }
 
   function noGreetLanguage() {
     return "Please select a language"
-
   }
+
   return {
     setName,
     getName,
@@ -77,6 +105,8 @@ export default function Greetings() {
     invalid,
     noGreetLanguage,
     greet,
-    setLanguage
+    setLanguage,
+    reset,
+    getLanguage
   }
 }
