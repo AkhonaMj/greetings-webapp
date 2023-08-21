@@ -2,37 +2,42 @@
     <h1 class="greetText">Greeting</h1>
 
     <form action="/greetings" method="POST">
-
+        <p>Enter Name:</p>
         <label for="name">
             <input type="text" name="name" id="name">
 
 
         </label>
-        <p>{{greetUser}}{{messages}}</p>
-      
+        <p class="greeting">{{greetUser}}</p>
+        <p class="error1">{{messages}}</p>
+
         <p>Counter:{{counter}}</p>
-        <label class="">
-            <input type="radio" name="languageRadio" class="languageRadio" value="english">
-            <span class="label-body">English</span>
-        </label>
-        <label class="">
-            <input type="radio" name="languageRadio" class="languageRadio" value="isixhosa">
-            <span class="label-body">Isixhosa</span>
-        </label>
-        <label class="">
-            <input type="radio" name="languageRadio" class="languageRadio" value="sepedi">
-            <span class="label-body">Sepedi</span>
-        </label>
+        <div class="radioGroup">
+            <label class="">
+                <input type="radio" name="languageRadio" class="languageRadio" value="english">
+                <span class="label-body">English</span>
+            </label>
+            <label class="">
+                <input type="radio" name="languageRadio" class="languageRadio" value="isixhosa">
+                <span class="label-body">Isixhosa</span>
+            </label>
+            <label class="">
+                <input type="radio" name="languageRadio" class="languageRadio" value="sepedi">
+                <span class="label-body">Sepedi</span>
+            </label>
+        </div>
 
-
-        <div>
-            <button class="button" type="submit">Greet</button>
+        <div class="buttons">
+            <button type="submit">Greet</button>
         </div>
 
     </form>
 
+    <div class="buttons">
+        <form action="/reset" method="POST">
+            <button type="submit">Reset</button>
+        </form>
+    </div>
 
-    <form action="/reset" method="POST">
-        <button class="button" type="submit">Reset</button>
-    </form>
+    <a href="/greeted">Greeted names:</a>
 </div>

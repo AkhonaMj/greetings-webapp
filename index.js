@@ -31,8 +31,8 @@ app.get('/', function (req, res) {
     res.render('index', {
         greetUser: greetings.greet(),
         counter: greetings.count(),
-        messages: req.flash('error')[0]
-
+        messages: req.flash('error')[0],
+     
     });
 });
 
@@ -40,19 +40,24 @@ app.get('/', function (req, res) {
 app.post('/greetings', function (req, res) {
     greetings.setName(req.body.name);
     greetings.setLanguage(req.body.languageRadio)
-    
-    if(!greetings.getName()){
+
+    if (!greetings.getName()) {
         req.flash('error', greetings.invalid());
-    }
-    
-     if(!greetings.getLanguage()){
+
+        };
+
+
+    if (!greetings.getLanguage()) {
         req.flash('error', greetings.noGreetLanguage());
     }
+    // if(true){
+    //     req.flash(color,)
+    // }
     res.redirect('/')
 });
 
 app.post('/reset', function (req, res) {
-   greetings.reset()
+    greetings.reset()
     res.redirect('/')
 })
 
@@ -67,12 +72,9 @@ app.get("/counter/:username", function (req, res) {
 });
 
 
-
-app.post("/greeted", function (req, res) {
-
-    res.redirect("/")
-
-
+app.get("/greeted", function (req, res) {
+    res.render("greeted", {greeted: greetings.greeter()})
+    
 })
 
 

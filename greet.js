@@ -28,7 +28,7 @@ export default function Greetings() {
     return nameHolder;
   }
 
-  function getLanguage(){
+  function getLanguage() {
     return languageHolder;
   }
 
@@ -79,6 +79,10 @@ export default function Greetings() {
   function count() {
     return nameList.length
   }
+  function greeter() {
+    return nameList
+
+  }
 
   function reset() {
     nameList = []
@@ -94,6 +98,8 @@ export default function Greetings() {
     return "Please select a language"
   }
 
+
+
   return {
     setName,
     getName,
@@ -107,6 +113,9 @@ export default function Greetings() {
     greet,
     setLanguage,
     reset,
-    getLanguage
+    getLanguage,
+    greeter
+
+
   }
 }
