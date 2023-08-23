@@ -11,7 +11,20 @@
         <p class="greeting">{{greetUser}}</p>
         <p class="error1">{{messages}}</p>
 
-        <p>Counter:{{counter}}</p>
+        <script>
+            setTimeout(function () {
+                document.querySelector(".error1").remove();
+            }, 3000)
+
+        </script>
+        <script>  setTimeout(function () {
+                document.querySelector(".error1").remove();
+            }, 3000)
+        </script>
+
+
+        <p>Counter:{{counter}}</p> <a href="/greeted">Greeted names:</a>
+        <div></div>
         <div class="radioGroup">
             <label class="">
                 <input type="radio" name="languageRadio" class="languageRadio" value="english">
@@ -35,9 +48,15 @@
 
     <div class="buttons">
         <form action="/reset" method="POST">
-            <button type="submit">Reset</button>
+
+            <button type="submit" onclick="return confirm('Are you sure you want to rest?')">Reset</button>
+
         </form>
+
     </div>
 
-    <a href="/greeted">Greeted names:</a>
+
+
+
+
 </div>

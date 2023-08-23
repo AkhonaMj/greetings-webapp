@@ -77,8 +77,11 @@ export default function Greetings() {
 
 
   function count() {
+
     return nameList.length
+
   }
+  
   function greeter() {
     return nameList
 
@@ -97,7 +100,6 @@ export default function Greetings() {
   function noGreetLanguage() {
     return "Please select a language"
   }
-
 
 
   return {

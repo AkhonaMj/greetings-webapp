@@ -6,6 +6,7 @@ import session from "express-session";
 import Greetings from "./greet.js";
 
 
+
 const app = express();
 const greetings = Greetings();
 
@@ -32,32 +33,34 @@ app.get('/', function (req, res) {
         greetUser: greetings.greet(),
         counter: greetings.count(),
         messages: req.flash('error')[0],
-     
+
     });
 });
 
 
 app.post('/greetings', function (req, res) {
     greetings.setName(req.body.name);
-    greetings.setLanguage(req.body.languageRadio)
+    greetings.setLanguage(req.body.languageRadio);
+
 
     if (!greetings.getName()) {
         req.flash('error', greetings.invalid());
 
-        };
 
+    }
 
     if (!greetings.getLanguage()) {
         req.flash('error', greetings.noGreetLanguage());
     }
-    // if(true){
-    //     req.flash(color,)
-    // }
+
+
     res.redirect('/')
 });
 
 app.post('/reset', function (req, res) {
     greetings.reset()
+   
+
     res.redirect('/')
 })
 
@@ -73,9 +76,10 @@ app.get("/counter/:username", function (req, res) {
 
 
 app.get("/greeted", function (req, res) {
-    res.render("greeted", {greeted: greetings.greeter()})
-    
-})
+    res.render("greeted", { greeted: greetings.greeter() })
+
+});
+
 
 
 
