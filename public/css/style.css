@@ -11,24 +11,25 @@
   font-weight: bold;
   font-size: xx-large;
 }
-.error1{
+
+.error1 {
   color: crimson;
   font-weight: bold;
   font-size: xxx-large;
 }
 
 
-.radioGroup{
+.radioGroup {
   display: flex;
- justify-content: center;
+  justify-content: center;
 }
 
 body {
-  background-image:url("/images/pexels-phot.jpeg") ;
+  background-image: url("/images/photo-15.avif");
   background-size: cover;
   text-align: center;
   color: black;
-  font-size:large;
+  font-size: large;
   font-weight: bold;
 
 
@@ -37,7 +38,7 @@ body {
 
 .buttons {
   margin-top: 30px;
-  background-color: rgb(47, 45, 54);
+  background-color: rgb(28, 16, 191);
   height: 40px;
   width: 100px;
   color: black;
@@ -47,6 +48,8 @@ body {
   display: flex;
   justify-content: center;
   margin: auto;
+  border-radius: 10px;
+  border-style: hidden;
 }
 
 .languageRadio {
