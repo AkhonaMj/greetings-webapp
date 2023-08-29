@@ -18,7 +18,7 @@ const exphbs = engine({
     layoutsDir: 'views/layouts'
 });
 // should we use a SSL connection
-let useSSL = false;
+let useSSL = true;
 // let local = process.env.LOCAL || false;
 // if (process.env.DATABASE_URL && !local) {
 //     useSSL = true;
@@ -73,23 +73,23 @@ app.post('/greetings', async function (req, res) {
 });
 
 
-app.post('/reset', function (req, res) {
-    //await greetInstance.resetCounter()
-    // greetings.reset()
+app.post('/reset', async function (req, res) {
+     await greetInstance.resetCounter()
+   // greetings.reset()
     res.redirect('/')
 })
 
 
 app.get("/counter/:username", async function (req, res) {
     const username = req.params.username;
-    // var counted = await greetInstance.counter();
+   // var counted = await greetInstance.counter();
     const countPerPerson = await greetInstance.nameCounts(username)
     console.log(countPerPerson);
 
     res.render("counter", {
         counter: countPerPerson,
         username: username
-
+       
 
     });
 });
