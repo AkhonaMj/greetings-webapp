@@ -8,10 +8,30 @@ import dotenv from "dotenv";
 dotenv.config()
 import pgPromise from "pg-promise";
 import Greetdb from "./greetdb.js";
-
+import redis from "redis";
 
 
 const app = express();
+
+app.use(express.session({
+  store: new redis.Client(),
+  secret: 'my-secret-key',
+  resave: true,
+  saveUninitialized: true
+}));
+
+
+
+
+
+
+
+
+
+
+
+
+
 const pgp = pgPromise();
 
 
@@ -25,6 +45,7 @@ let local = process.env.LOCAL || false;
 if (process.env.DATABASE_URL && !local) {
     useSSL = true;
 }
+
 const connectionString = process.env.CONNECTION_STRING
 console.log(connectionString);
 const db = pgp(connectionString);
