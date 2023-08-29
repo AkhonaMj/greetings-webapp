@@ -10,6 +10,13 @@ import pgPromise from "pg-promise";
 import Greetdb from "./greetdb.js";
 
 
+
+
+app.use(session({
+  secret: 'my-secret',
+  store: redisStore,
+}));
+
 const pgp = pgPromise();
 const app = express();
 
@@ -19,10 +26,10 @@ const exphbs = engine({
 });
 // should we use a SSL connection
 let useSSL = false;
-// let local = process.env.LOCAL || false;
-// if (process.env.DATABASE_URL && !local) {
-//     useSSL = true;
-// }
+let local = process.env.LOCAL || false;
+if (process.env.DATABASE_URL && !local) {
+    useSSL = true;
+}
 const connectionString = process.env.CONNECTION_STRING
 console.log(connectionString);
 const db = pgp(connectionString);
