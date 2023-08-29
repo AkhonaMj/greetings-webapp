@@ -10,14 +10,8 @@ import pgPromise from "pg-promise";
 import Greetdb from "./greetdb.js";
 
 
-
-const app = express();
-
-
-
-
 const pgp = pgPromise();
-
+const app = express();
 
 const exphbs = engine({
     defaultLayout: 'main',
@@ -25,16 +19,19 @@ const exphbs = engine({
 });
 // should we use a SSL connection
 let useSSL = false;
-let local = process.env.LOCAL || false;
-if (process.env.DATABASE_URL && !local) {
-    useSSL = true;
-}
-
+// let local = process.env.LOCAL || false;
+// if (process.env.DATABASE_URL && !local) {
+//     useSSL = true;
+// }
 const connectionString = process.env.CONNECTION_STRING
 console.log(connectionString);
 const db = pgp(connectionString);
 const greetInstance = Greetdb(db);
 const greetings = Greetings(greetInstance);
+
+
+
+
 
 app.engine('handlebars', exphbs);
 app.set('view engine', 'handlebars');
@@ -76,8 +73,8 @@ app.post('/greetings', async function (req, res) {
 });
 
 
-app.post('/reset', async function (req, res) {
-    await greetInstance.resetCounter()
+app.post('/reset', function (req, res) {
+    //await greetInstance.resetCounter()
     // greetings.reset()
     res.redirect('/')
 })
