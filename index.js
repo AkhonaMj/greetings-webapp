@@ -11,14 +11,14 @@ import Greetdb from "./greetdb.js";
 
 
 
-
+const app = express();
 app.use(session({
-  secret: 'my-secret',
-  store: redisStore,
-}));
+    secret: 'my-secret',
+    store: redisStore,
+  }));
 
 const pgp = pgPromise();
-const app = express();
+
 
 const exphbs = engine({
     defaultLayout: 'main',
