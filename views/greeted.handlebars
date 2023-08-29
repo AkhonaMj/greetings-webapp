@@ -1,9 +1,10 @@
 <div>
+
 <h1>Greeted Names</h1>
 
 <ul class="people_list">
   {{#each greeted}}
-    <li>{{this}}</li>
+    <li><a href="/counter/{{this.name}}">{{this.name}}</a></li>
   {{/each}}
 </ul>
 

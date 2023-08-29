@@ -25,13 +25,21 @@
 }
 
 body {
-  background-image: url("/images/photo-15.jpg");
+  background-image: url("../images/photo-15.jpg");
   background-size: cover;
   text-align: center;
   color: black;
   font-size: large;
   font-weight: bold;
 
+
+}
+a {
+  color:inherit ;
+
+}
+a:hover {
+  color:grey ;
 
 }
 

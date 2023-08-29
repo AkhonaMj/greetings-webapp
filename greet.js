@@ -1,4 +1,4 @@
-export default function Greetings() {
+export default function Greetings(Greetdb) {
 
   var nameHolder = "";
   var nameList = [];
@@ -58,7 +58,9 @@ export default function Greetings() {
   function greet() {
     if (nameHolder !== "" && languageHolder !== "") {
       if (!nameList.includes(nameHolder)) {
+        Greetdb.addNames(nameHolder)
         nameList.push(nameHolder);
+
       }
 
       if (languageHolder == "english") {
@@ -77,9 +79,7 @@ export default function Greetings() {
 
 
   function count() {
-
     return nameList.length
-
   }
   
   function greeter() {
