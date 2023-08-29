@@ -8,26 +8,10 @@ import dotenv from "dotenv";
 dotenv.config()
 import pgPromise from "pg-promise";
 import Greetdb from "./greetdb.js";
-import redis from "redis";
+
 
 
 const app = express();
-
-app.use(express.session({
-  store: new redis.Client(),
-  secret: 'my-secret-key',
-  resave: true,
-  saveUninitialized: true
-}));
-
-
-
-
-
-
-
-
-
 
 
 
