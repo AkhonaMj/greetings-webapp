@@ -74,22 +74,22 @@ app.post('/greetings', async function (req, res) {
 
 
 app.post('/reset', async function (req, res) {
-     await greetInstance.resetCounter()
-   // greetings.reset()
+    await greetInstance.resetCounter()
+    greetings.reset()
     res.redirect('/')
 })
 
 
 app.get("/counter/:username", async function (req, res) {
     const username = req.params.username;
-   // var counted = await greetInstance.counter();
+    // var counted = await greetInstance.counter();
     const countPerPerson = await greetInstance.nameCounts(username)
     console.log(countPerPerson);
 
     res.render("counter", {
         counter: countPerPerson,
         username: username
-       
+
 
     });
 });
