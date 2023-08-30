@@ -32,8 +32,8 @@ export default function Greetdb(db) {
 
 
     async function userGreetCount() {
-        var results = await db.any("SELECT count (name) FROM greetings");
-        return results[0].count
+        var results = await db.one("SELECT count (name) FROM greetings");
+        return results.count
 
     }
 
@@ -44,7 +44,6 @@ export default function Greetdb(db) {
 
     async function nameCounts(name) {
         var results = await db.any("SELECT count FROM greetings WHERE name = $1", [name])
-        console.log(results)
         return results[0].count
     }
 

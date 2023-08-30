@@ -24,7 +24,6 @@ let useSSL = true;
 //     useSSL = true;
 // }
 const connectionString = process.env.CONNECTION_STRING
-console.log(connectionString);
 const db = pgp(connectionString);
 const greetInstance = Greetdb(db);
 const greetings = Greetings(greetInstance);
@@ -58,16 +57,24 @@ app.get('/', async function (req, res) {
 
 
 app.post('/greetings', async function (req, res) {
+    greetings.reset();
     greetings.setName(req.body.name);
     greetings.setLanguage(req.body.languageRadio);
     //    let queryResults = 'INSERT INTO greetings (name, count) VALUES ($1, $2)';
     //  db.none(queryResults,[req.body.name, 1])
-    await greetInstance.addNames(req.body.name)
     if (!greetings.getName()) {
+        console.log(greetings.getLanguage());
         req.flash('error', greetings.invalid());
-    }
-    if (!greetings.getLanguage()) {
+    } else if (!greetings.getLanguage()) {
+        console.log(greetings.getLanguage());
         req.flash('error', greetings.noGreetLanguage());
+    }
+    else if(greetInstance.existingName(greetings.getName())){
+        await greetInstance.update(req.body.name)
+    }
+    else {
+        console.log(greetings.getLanguage());
+        await greetInstance.addNames(req.body.name)
     }
     res.redirect('/')
 });
@@ -84,8 +91,6 @@ app.get("/counter/:username", async function (req, res) {
     const username = req.params.username;
     // var counted = await greetInstance.counter();
     const countPerPerson = await greetInstance.nameCounts(username)
-    console.log(countPerPerson);
-
     res.render("counter", {
         counter: countPerPerson,
         username: username
