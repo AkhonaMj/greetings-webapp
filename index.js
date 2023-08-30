@@ -69,7 +69,7 @@ app.post('/greetings', async function (req, res) {
         console.log(greetings.getLanguage());
         req.flash('error', greetings.noGreetLanguage());
     }
-    else if(greetInstance.existingName(greetings.getName())){
+    else if(await greetInstance.existingName(greetings.getName())){
         await greetInstance.update(req.body.name)
     }
     else {

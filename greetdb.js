@@ -17,7 +17,7 @@ export default function Greetdb(db) {
 
     async function existingName(name) {
         var namesAvailable = await db.oneOrNone("SELECT name FROM greetings WHERE name = $1", [name])
-        return namesAvailable
+        return namesAvailable 
 
 
     }
