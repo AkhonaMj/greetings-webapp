@@ -1,123 +1,94 @@
 export default function Greetings(Greetdb) {
-
   var nameHolder = "";
   var nameList = [];
   var languageHolder = "";
-
   function setName(name) {
-    if (valid(name) && name !== "") {
-      nameHolder = name;
-    } else {
-      nameHolder = ""
-    }
-
+      if (valid(name) && name !== "") {
+          nameHolder = name;
+      } else {
+          nameHolder = ""
+      }
   }
-
-
   function setLanguage(language) {
-    if (language !== "") {
-      languageHolder = language;
-    } else {
-      noGreetLanguage();
-    }
-
-
+      if (language !== "") {
+          languageHolder = language;
+      } else {
+          noGreetLanguage();
+      }
   }
-
   function getName() {
-    return nameHolder;
+      return nameHolder;
   }
-
   function getLanguage() {
-    return languageHolder;
+      return languageHolder;
   }
-
-
   function valid(name) {
-    const validRegex = /^[a-zA-Z]+$/
-    if (!validRegex.test(name)) {
-      invalid();
-      return false;
-    } else {
-      return true;
-    }
+      const validRegex = /^[a-zA-Z]+$/
+      if (!validRegex.test(name)) {
+          invalid();
+          return false;
+      } else {
+          return true;
+      }
   }
-
   function greetInSepedi() {
-    return "Thobela " + nameHolder
+      return "Thobela " + nameHolder
   }
-
   function greetInEnglish() {
-    return "Hello " + nameHolder
+      return "Hello " + nameHolder
   }
-
   function greetInIsixhosa() {
-    return "Molo " + nameHolder
+      return "Molo " + nameHolder
   }
-
-  function greet() {
-    if (nameHolder !== "" && languageHolder !== "") {
-      if (!nameList.includes(nameHolder)) {
-        Greetdb.addNames(nameHolder)
-        nameList.push(nameHolder);
-
+  async function greet() {
+      if (nameHolder !== "" && languageHolder !== "") {
+          if (languageHolder == "english") {
+              return greetInEnglish()
+          } else if (languageHolder == "sepedi") {
+              return greetInSepedi()
+          } else if (languageHolder == "isixhosa") {
+              return greetInIsixhosa()
+          }
+          if (!nameList.includes(nameHolder)) {
+              await Greetdb.addNames(nameHolder) //adding the names
+              nameList.push(nameHolder);
+          }
+          else {
+              await Greetdb.update(nameHolder); // updating if name IS included
+          }
       }
-
-      if (languageHolder == "english") {
-        return greetInEnglish()
-
-      } else if (languageHolder == "sepedi") {
-        return greetInSepedi()
-
-      } else if (languageHolder == "isixhosa") {
-        return greetInIsixhosa()
-      }
-
-    }
   }
-
-
-
   function count() {
-    return nameList.length
+      return nameList.length
   }
-  
   function greeter() {
-    return nameList
-
+      return nameList
   }
-
   function reset() {
-    nameList = []
-    nameHolder = ""
-    languageHolder = ""
+      nameList = []
+      nameHolder = ""
+      languageHolder = ""
   }
-
   function invalid() {
-    return "Please enter a valid name"
+      return "Please enter a valid name"
   }
-
   function noGreetLanguage() {
-    return "Please select a language"
+      return "Please select a language"
   }
-
-
   return {
-    setName,
-    getName,
-    valid,
-    greetInSepedi,
-    greetInEnglish,
-    greetInIsixhosa,
-    count,
-    invalid,
-    noGreetLanguage,
-    greet,
-    setLanguage,
-    reset,
-    getLanguage,
-    greeter
-
-
+      setName,
+      getName,
+      valid,
+      greetInSepedi,
+      greetInEnglish,
+      greetInIsixhosa,
+      count,
+      invalid,
+      noGreetLanguage,
+      greet,
+      setLanguage,
+      reset,
+      getLanguage,
+      greeter
   }
 }

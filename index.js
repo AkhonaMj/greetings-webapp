@@ -48,7 +48,7 @@ app.use(flash());
 
 app.get('/', async function (req, res) {
     res.render('index', {
-        greetUser: greetings.greet(),
+        greetUser: await greetings.greet(),
         counter: await greetInstance.userGreetCount(),
         //counter: greetings.count(),
         messages: req.flash('error')[0],

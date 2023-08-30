@@ -8,9 +8,9 @@ export default function Greetdb(db) {
             await db.none("INSERT INTO greetings (name, count) VALUES ($1, $2)", [name, 1])
 
          }
-        // else {
-        //     await update(name)
-        // }
+         else {
+             await update(name)
+         }
         // let queryResults = 'INSERT INTO greetings (name, count) VALUES ($1, $2)';
         //  db.none(queryResults,[req.body.name, 1])
     }
