@@ -24,7 +24,7 @@ export default function Greetdb(db) {
 
     async function showNames() {
 
-        var results = await db.any("SELECT name FROM greetings");
+        var results = await db.manyOrNone("SELECT name FROM greetings");
         // console.log(results);
         return results;
     }
