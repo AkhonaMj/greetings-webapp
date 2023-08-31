@@ -39,5 +39,8 @@
     "pg-promise": "^11.5.4",
     "session": "^0.1.0",
     "timers": "^0.1.1"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
   }
 }
