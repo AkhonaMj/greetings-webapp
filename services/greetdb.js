@@ -1,11 +1,11 @@
 export default function Greetdb(db) {
 
     async function addNames(name) {
-
+      
         var nameGreeted = await existingName(name)
         if (!nameGreeted) {
 
-            await db.none("INSERT INTO greetings (name, count) VALUES ($1, $2)", [name, 1])
+            await db.none("INSERT INTO greetings (name, count) VALUES ($1, $2)", [name.toLowerCase(), 1])
 
          }
          else {

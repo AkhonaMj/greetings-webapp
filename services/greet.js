@@ -4,7 +4,8 @@ export default function Greetings(Greetdb) {
     var languageHolder = "";
     function setName(name) {
         if (valid(name)) {
-            nameHolder = name;
+       
+            nameHolder = name
         }
     }
     function setLanguage(language) {
