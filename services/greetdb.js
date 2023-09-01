@@ -5,7 +5,7 @@ export default function Greetdb(db) {
         var nameGreeted = await existingName(name)
         if (!nameGreeted) {
 
-            await db.none("INSERT INTO greetings (name, count) VALUES ($1, $2)", [name.toLowerCase(), 1])
+            await db.none("INSERT INTO greetings (name, count) VALUES ($1, $2)", [name, 1])
 
          }
          else {

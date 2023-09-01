@@ -5,7 +5,13 @@
   height: auto;
   margin-bottom: 1em;
 }
-
+nav{
+  display: flex;
+  width:100%;
+  background-color: black;
+  justify-content: space-evenly;
+  
+}
 .greeting {
   color: black;
   font-weight: bold;
@@ -31,16 +37,26 @@ body {
   color: black;
   font-size: large;
   font-weight: bold;
-
   text-shadow: 0.125rem 0.125rem 0.125rem white;
+  margin: 0;
+}
+
+nav a {
+  color: white;
+  text-shadow: none;
+  text-decoration:none;
+  background-color: blueviolet;
+  width: 33.33%;
+
+}
+a{
+  color: black;
+  text-shadow: none;
+ 
 
 
 }
 
-a {
-  color: inherit;
-
-}
 
 a:hover {
   color: grey;
@@ -56,6 +72,7 @@ button{
   background-color: black;
   color: white !important;
 }
+
 .buttons {
   margin-top: 30px; 
   height: 40px;

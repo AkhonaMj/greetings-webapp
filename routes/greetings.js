@@ -11,7 +11,7 @@ export default  function GreetRoutes(greetInstance, greetings) {
     }
     async function greet(req, res) {
         greetings.reset();
-        greetings.setName(req.body.name);
+        greetings.setName(req.body.name.toLowerCase());
         greetings.setLanguage(req.body.languageRadio);
         //    let queryResults = 'INSERT INTO greetings (name, count) VALUES ($1, $2)';
         //  db.none(queryResults,[req.body.name, 1])
@@ -23,11 +23,11 @@ export default  function GreetRoutes(greetInstance, greetings) {
             req.flash('error', greetings.noGreetLanguage());
         }
         else if (await greetInstance.existingName(greetings.getName())) {
-            await greetInstance.update(req.body.name)
+            await greetInstance.update(req.body.name.toLowerCase())
         }
         else {
             console.log(greetings.getLanguage());
-            await greetInstance.addNames(req.body.name)
+            await greetInstance.addNames(req.body.name.toLowerCase())
         }
         res.redirect('/')
     }
